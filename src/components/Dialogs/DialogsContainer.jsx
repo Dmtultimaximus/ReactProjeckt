@@ -10,24 +10,12 @@ import { connect } from 'react-redux'
 
 
 
-// const DialogsContainer = (props) => {
-//     // debugger
 
-//     let state = props.store.getState().dialogsPage
-//     let onSendMessage = ()=>{
-//         props.store.dispatch(addMessage());
-//     }
-//     let onNewMessageChange = (body) =>{
-//         props.store.dispatch(updateNewMessageBody(body));
-//     }
-//     return (
-//         <Dialogs updateNewMessageBody={onNewMessageChange} sendMessage={onSendMessage} dialogsPage={state}/>
-//     )
-// }
 
 let mapStateToProps =(state)=>{
     return{
-        dialogsPage: state.dialogsPage
+        dialogsPage: state.dialogsPage,
+        isAuth: state.auth.isAuth
     }
 }
 let mapDispatchToProps =(dispatch)=>{

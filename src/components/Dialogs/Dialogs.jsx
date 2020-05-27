@@ -1,6 +1,6 @@
 import React from 'react'
 import style from './Dialogs.module.sass'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom'
 import DialogItem from './DialogItem/dialogItem'
 import Message from './Message/message'
 import { updateNewMessageBody, addMessage } from '../../redux/dialogs-reducer'
@@ -9,7 +9,6 @@ import { updateNewMessageBody, addMessage } from '../../redux/dialogs-reducer'
 
 
 const Dialogs = (props) => {
-    // debugger
 
     let state = props.dialogsPage
     let dialogsElement = state.people.map( el => <DialogItem name={el.name} id={el.id}/>);
@@ -23,6 +22,9 @@ const Dialogs = (props) => {
         props.updateNewMessageBody(body)
         
     }
+
+    if(!props.isAuth) return <Redirect to={'/login'} />
+
     return (
         <div className={style.dialogs}>
             <div className={style.dialogs_item}>
