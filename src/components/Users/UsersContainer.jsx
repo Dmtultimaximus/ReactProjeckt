@@ -6,6 +6,8 @@ import { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount,toggleIs
 import preloader from './../../assets/images/Spinner-1s-200px.svg'
 import Preloader from '../common/preloader/preloader'
 import { usersAPI } from '../../api/api'
+import { compose } from 'redux'
+import { withAuthRedirect } from '../../hoc/AuthRedirect'
 
 
 class UsersAPIComponent extends React.Component {
@@ -66,14 +68,19 @@ let mapStateToProps = (state)=>{
 }
 
 
-
-export default connect(mapStateToProps,     {
+export default  compose(connect(mapStateToProps, {
     follow,
     unfollow,
-    // setUsers,
     setCurrentPage,
-    // setTotalUsersCount,
-    // toggleIsFetching,
     toggleFollowingProgress,
     getUsers
-})(UsersAPIComponent);
+}),
+    withAuthRedirect
+)(UsersAPIComponent)
+// export default connect(mapStateToProps, {
+//     follow,
+//     unfollow,
+//     setCurrentPage,
+//     toggleFollowingProgress,
+//     getUsers
+// })(UsersAPIComponent);
